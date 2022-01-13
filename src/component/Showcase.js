@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { NasaContext } from "../App";
 
-const Showcase = (nasaData) => {
-  console.log("showcase nasaData: ", nasaData);
+const Showcase = (props) => {
+  const data = props.nasaData;
+  //   console.log("showcase props: ", props);
+  //   console.log("showcase nasaData: ", props.nasaData);
+  //   const { handleLike } = useContext(NasaContext);
+
+  const [liked, setLiked] = useState(false);
+
   return (
     <>
       <div className="showcaseContainer">
-        <h2>{nasaData.title}</h2>
-        <p>{nasaData.date}</p>
-        {/* <p>{nasaData.explanation}</p> */}
+        <div className="showcaseContainer-title">
+          <div>
+            <h2>{data.title}</h2>
+            <p>{data.date}</p>
+          </div>
 
-        <img src={nasaData.url} alt={nasaData.title}></img>
-        <p>Copyright: {nasaData.copyright}</p>
-      </div>
-      <div className="showcaseButton">
-        <button className="btn"></button>
+          <div className="showcaseButton">
+            <button className="btn" onClick={() => setLiked(!liked)}>
+              {liked ? "LIKED" : "LIKE"}
+            </button>
+          </div>
+        </div>
+
+        <img src={data.url} alt={data.title}></img>
+        <p>Copyright: {data.copyright}</p>
       </div>
     </>
   );
