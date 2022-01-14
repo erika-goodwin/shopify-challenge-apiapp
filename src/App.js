@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 import Showcase from "./component/Showcase";
 import "./css/style.scss";
+import { LoadingSpinerComponent } from "./component/LoadingSpinerComponent";
+import { trackPromise } from "react-promise-tracker";
 
 // export const NasaContext = React.createContext();
 
@@ -9,15 +11,16 @@ function App() {
   const [nasaData, setNasaData] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}`
-        // `https://api.nasa.gov/planetary/apod?api_key=roZ3G8WaneZOOMjbLP1JFQoB8eL0Ya2dHBL9lRP8`
-      )
-      .then((res) => {
-        setNasaData([res.data]);
-      })
-      .catch((err) => console.log(err));
+    trackPromise(
+      axios
+        .get(
+          `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}`
+        )
+        .then((res) => {
+          setNasaData([res.data]);
+        })
+        .catch((err) => console.log(err))
+    );
   }, []);
 
   useEffect(() => {
@@ -42,6 +45,7 @@ function App() {
           {nasaData.map((data, idx) => (
             <Showcase key={idx} nasaData={data} />
           ))}
+          <LoadingSpinerComponent />
         </div>
       </div>
       {/* </NasaContext.Provider> */}

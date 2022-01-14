@@ -1,11 +1,9 @@
 import React, { useContext, useState } from "react";
-import { NasaContext } from "../App";
+import { HiOutlineHeart } from "react-icons/hi";
+import { HiHeart } from "react-icons/hi";
 
 const Showcase = (props) => {
   const data = props.nasaData;
-  //   console.log("showcase props: ", props);
-  //   console.log("showcase nasaData: ", props.nasaData);
-  //   const { handleLike } = useContext(NasaContext);
 
   const [liked, setLiked] = useState(false);
 
@@ -20,7 +18,7 @@ const Showcase = (props) => {
 
           <div className="showcaseButton">
             <button className="btn" onClick={() => setLiked(!liked)}>
-              {liked ? "LIKED" : "LIKE"}
+              {liked ? <HiHeart /> : <HiOutlineHeart />}
             </button>
           </div>
         </div>
