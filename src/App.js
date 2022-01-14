@@ -1,11 +1,9 @@
 import axios from "axios";
-import React, { createContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Showcase from "./component/Showcase";
 import "./css/style.scss";
 import { LoadingSpinerComponent } from "./component/LoadingSpinerComponent";
 import { trackPromise } from "react-promise-tracker";
-
-// export const NasaContext = React.createContext();
 
 function App() {
   const [nasaData, setNasaData] = useState([]);
@@ -28,16 +26,13 @@ function App() {
     // console.log("nasaData[0]: ", nasaData[0]);
   }, [nasaData]);
 
-  // const nasaContextValue = {
-  //   handleLike,
-  // };
-
   return (
     <>
-      {/* <NasaContext.Provider value={nasaContextValue}> */}
       <div className="appContainer">
         <nav className="appContainer-nav">
-          <h1>Soacestagram</h1>
+          <a href="/" className="appContainer-nav-title">
+            <h1>Soacestagram</h1>
+          </a>
           <p>Brought to you by NASA's image API</p>
         </nav>
 
@@ -48,7 +43,6 @@ function App() {
           <LoadingSpinerComponent />
         </div>
       </div>
-      {/* </NasaContext.Provider> */}
     </>
   );
 }

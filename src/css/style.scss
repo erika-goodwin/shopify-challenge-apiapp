@@ -40,6 +40,11 @@ html {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+
+    &-title {
+      text-decoration: none;
+      color: black;
+    }
   }
 
   .appcontainer-showcaseCon {
